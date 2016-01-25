@@ -14,6 +14,7 @@
 
   <tbody>
     <% @beers.each do |beer| %>
+     <!-- <% byebug if beer.brewery.nil? %>-->
       <tr>
         <td><%= beer.name %></td>
         <td><%= beer.style %></td>

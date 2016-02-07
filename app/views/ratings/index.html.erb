@@ -1,9 +1,12 @@
 <h2>List of ratings</h2>
 
-Number of ratings <%= @ratings.count %>
+Number of ratings <%= @ratings.count %>, average rating of <% sc = [] %>
+    <% @ratings.each do |r| %>
+    <% sc << r.score %>
+    <%end%><%= (sc.inject{|sum, el| sum + el }.to_f / sc.size).round(2) %>
 <ul>
   <% @ratings.each do |rating| %>
-      <li> <%= rating.to_s %>  <%= link_to 'delete', rating, method: :delete, data: { confirm: 'Are you sure?' }%> </li>
+      <li> <%= rating.to_s %>  <%= link_to rating.user.username, user_path(rating.user) %> </li>
   <% end %>
 </ul>
 <p>

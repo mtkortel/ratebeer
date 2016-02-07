@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Username:</strong>
+  <%= @user.username %>
+  <p>has made <%= @user.ratings.count %> ratings</p>
+  <strong>ratings</strong>
+  <ul>
+    <% @user.ratings.each do |rating| %>
+        <li> <%= rating.to_s %>  <%= link_to 'delete', rating, method: :delete, data: { confirm: 'Are you sure?' }%> </li>
+    <% end %>
+  </ul>
+
+</p>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

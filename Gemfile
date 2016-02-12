@@ -45,6 +45,13 @@ group :development, :test do
   gem 'sqlite3'
 end
 
+group :test do
+  gem 'rspec-rails', '~> 2.14.1'
+  gem 'rails_helper'
+  gem 'capybara'
+  gem 'launchy'
+end
+
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'better_errors'

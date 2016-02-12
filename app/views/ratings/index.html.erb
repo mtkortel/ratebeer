@@ -10,5 +10,8 @@ Number of ratings <%= @ratings.count %>, average rating of <% sc = [] %>
   <% end %>
 </ul>
 <p>
-  <%= link_to 'New Rating', new_rating_path %>
+  <% if not current_user.nil? %>
+    <%= link_to 'New Rating', new_rating_path %>
+  <%end%>
+
 </p>

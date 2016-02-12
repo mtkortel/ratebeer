@@ -13,7 +13,9 @@ class RatingsController < ApplicationController
     #session[:last_rating] = "#{rating.beer.name} #{rating.score} points"
     #redirect_to ratings_path
     #redirect_to "http://www.cs.helsinki.fi"
-    if @rating.save
+    if current_user.nil?
+      redirect_to signin_path, notice: 'you should be signed in'
+    elsif @rating.save
       current_user.ratings << @rating
       redirect_to user_path current_user
     else

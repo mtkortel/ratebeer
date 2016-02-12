@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    byebug
+    #byebug
     # nollattaan sessio
     session[:user_id] = nil
     #uudelleenohjaus

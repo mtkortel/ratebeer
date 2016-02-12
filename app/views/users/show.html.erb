@@ -3,7 +3,10 @@
 <p>
   <strong>Username:</strong>
   <%= @user.username %>
-  <p>has made <%= @user.ratings.count %> ratings</p>
+  <p>has made <%= @user.ratings.count %> ratings, average rating of <% sc = [] %>
+    <% @ratings.each do |r| %>
+        <% sc << r.score %>
+        <%end%><%= (sc.inject{|sum, el| sum + el }.to_f / sc.size).round(2) %></p>
   <strong>ratings</strong>
   <ul>
     <% @user.ratings.each do |rating| %>

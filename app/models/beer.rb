@@ -1,34 +1,14 @@
 class Beer < ActiveRecord::Base
-  include AverageRating
-  belongs_to :brewery
-  has_many :ratings, dependent: :destroy
+  include RatingAverage
 
   validates :name, presence: true
+  validates :style, presence: true
 
-
-
-  # @return [Object]
-  def average_rating2
-    arr = []
-    for r in self.ratings.each
-      arr.push r.score
-    end
-    b = arr.inject{ | sum, el| sum + el }.to_f / arr.size
-    return b
-  end
+  belongs_to :brewery
+  has_many :ratings, dependent: :destroy
+  has_many :raters, -> { uniq }, through: :ratings, source: :user
 
   def to_s
-    return "#{self.name} #{self.brewery.name}"
+    "#{name} #{brewery.name}"
   end
-
-  def average
-    return 0 if ratings.empty?
-    ratings.map { |r| r.score}.sum / ratings.count.to_f
-  end
-
 end
-
-
-
-
-# Yksinkertainen suojaus

@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160202101155) do
+ActiveRecord::Schema.define(version: 20160129174824) do
+
+  create_table "beer_clubs", force: :cascade do |t|
+    t.string   "name"
+    t.string   "city"
+    t.integer  "founded"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "beers", force: :cascade do |t|
     t.string   "name"
@@ -28,6 +36,13 @@ ActiveRecord::Schema.define(version: 20160202101155) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "memberships", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "beer_club_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "ratings", force: :cascade do |t|
     t.integer  "score"
     t.integer  "beer_id"
@@ -38,8 +53,9 @@ ActiveRecord::Schema.define(version: 20160202101155) do
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "password_digest"
   end
 
 end

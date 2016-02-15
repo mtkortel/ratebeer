@@ -1,17 +1,11 @@
 <h2>List of ratings</h2>
 
-Number of ratings <%= @ratings.count %>, average rating of <% sc = [] %>
-    <% @ratings.each do |r| %>
-    <% sc << r.score %>
-    <%end%><%= (sc.inject{|sum, el| sum + el }.to_f / sc.size).round(2) %>
+<p>
+  Number of ratings <%= @ratings.count %>
+</p>
+
 <ul>
   <% @ratings.each do |rating| %>
-      <li> <%= rating.to_s %>  <%= link_to rating.user.username, user_path(rating.user) %> </li>
+    <li> <%= rating %> <%= link_to rating.user.username, rating.user %></li>
   <% end %>
 </ul>
-<p>
-  <% if not current_user.nil? %>
-    <%= link_to 'New Rating', new_rating_path %>
-  <%end%>
-
-</p>

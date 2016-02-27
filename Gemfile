@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.2.3'
+ruby '2.2.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
@@ -34,7 +34,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
-gem 'httparty'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -50,6 +49,7 @@ group :test do
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'launchy'
+  gem 'webmock'
 end
 
 gem 'simplecov', require: false
@@ -66,4 +66,4 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0'
 end
 
-gem 'tzinfo-data', platforms: [:mingw, :mswin]
+gem 'httparty'

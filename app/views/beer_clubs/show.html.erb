@@ -15,7 +15,7 @@
   <ul>
     <% @beer_club.members.each do |member| %>
       <li>
-      <%= link_to member.username, member %>
+      <%= link_to member.username, member , class:'btn btn-primary'%>
       </li>
     <% end %>
   </ul>
@@ -31,7 +31,7 @@
 <% if current_user.in? @beer_club.members %>
   <%= form_for(@membership, method: "delete") do |f| %>
     <%= f.hidden_field :beer_club_id %>
-    <%= f.submit value: "end the membership" %>
+    <%= f.submit value: "end the membership", class:'btn btn-danger' %>
   <% end %>
 <% end %>
 
@@ -39,9 +39,9 @@
 
   <%= form_for(@membership) do |f| %>
     <%= f.hidden_field :beer_club_id %>
-    <%= f.submit value:"join the club" %>
+    <%= f.submit value:"join the club", class:'btn btn-primary' %>
   <% end %>
 
 <% end %>
 
-<%= link_to 'Edit', edit_beer_club_path(@beer_club) if current_user %>
+<%= link_to 'Edit', edit_beer_club_path(@beer_club), class:'btn btn-primary' if current_user %>

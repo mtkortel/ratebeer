@@ -15,12 +15,10 @@
     <li>
       <%= link_to beer.name, beer %> by
       <em>
-        <%= link_to beer.brewery.name, beer.brewery %>
+        <%= link_to beer.brewery.name, beer.brewery, class:'btn btn-primary' %>
       </em>
     </li>
   <% end %>
 </ul>
 
-<% if current_user %>
-  <%= link_to 'Edit', edit_style_path(@style) %>
-<% end %>
+<%= edit_and_destroy_buttons(@style) %>

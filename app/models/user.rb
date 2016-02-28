@@ -23,28 +23,44 @@ class User < ActiveRecord::Base
   end
 
   def favorite_style
-    return nil if ratings.empty?
-
-    rated = ratings.map{ |r| r.beer.style }.uniq
-    rated.sort_by { |style| -rating_of_style(style) }.first
+    favorite :style
   end
 
   def favorite_brewery
+    favorite :brewery
+  end
+
+  def favorite(category)
     return nil if ratings.empty?
 
-    rated = ratings.map{ |r| r.beer.brewery }.uniq
-    rated.sort_by { |brewery| -rating_of_brewery(brewery) }.first
+    rated = ratings.map{ |r| r.beer.send(category) }.uniq
+    rated.sort_by { |item| -rating_of(category, item) }.first
   end
+
+  def rating_of(category, item)
+    ratings_of = ratings.select{ |r| r.beer.send(category)==item }
+    ratings_of.map(&:score).inject(&:+) / ratings_of.count.to_f
+  end
+  
 
   private
 
-  def rating_of_style(style)
-    ratings_of = ratings.select{ |r| r.beer.style==style }
+  def rating_of_style(item)
+    ratings_of = ratings.select{ |r| r.beer.style==item}
     ratings_of.map(&:score).inject(&:+) / ratings_of.count.to_f
   end
 
-  def rating_of_brewery(brewery)
-    ratings_of = ratings.select{ |r| r.beer.brewery==brewery }
+  def rating_of_brewery(item)
+    ratings_of = ratings.select{ |r| r.beer.brewery==item}
     ratings_of.map(&:score).inject(&:+) / ratings_of.count.to_f
+  end
+
+  def self.top(n)
+    sorted_by_rating_in_desc_order = User.all.sort_by{ |b| -(b.ratings.count || 0) }
+    sorted_by_rating_in_desc_order.first n
+    # palauta listalta parhaat n kappaletta
+    # miten? ks. http://www.ruby-doc.org/core-2.1.0/Array.html
+    # vaatii sen että jokaisella panimolla on ainakin yksi olut ja
+    # sillä reittaus
   end
 end

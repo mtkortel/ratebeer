@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.2.1'
+ruby '2.2.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
@@ -53,8 +53,9 @@ group :test do
 end
 
 gem 'simplecov', require: false
-
+gem 'bootstrap-sass'
 group :development do
+  gem 'rails_layout'
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 
@@ -65,5 +66,5 @@ end
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
 end
-
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 gem 'httparty'

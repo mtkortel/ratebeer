@@ -8,7 +8,7 @@
 
 <p>
   <strong>Brewery:</strong>
-  <%= link_to @beer.brewery.name, @beer.brewery %>
+  <%= link_to @beer.brewery.name, @beer.brewery, class:'btn btn-primary' %>
 </p>
 
 <p>
@@ -26,9 +26,9 @@
   <%= form_for(@rating) do |f| %>
     <%= f.hidden_field :beer_id %>
     score: <%= f.number_field :score %>
-    <%= f.submit %>
+    <%= f.submit class:'btn btn-primary' %>
   <% end %>
 
-  <%= link_to 'Edit', edit_beer_path(@beer) %>
+  <%= link_to 'Edit', edit_beer_path(@beer), class:'btn btn-primary' %>
 
 <% end %>

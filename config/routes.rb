@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   resources :styles
   resources :beer_clubs
   resources :memberships
-  resources :users
+  resources :users do
+    post 'froze', on: :member
+  end
   resource :session, only: [:new, :create, :destroy]
 
   get 'signup', to: 'users#new'
@@ -10,7 +12,9 @@ Rails.application.routes.draw do
   delete 'signout', to: 'sessions#destroy'
 
   resources :beers
-  resources :breweries
+  resources :breweries do
+    post 'toggle_activity', on: :member
+  end
   resources :ratings, only: [:index, :new, :create, :destroy]
 
   resources :places, only:[:index, :show]

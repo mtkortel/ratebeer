@@ -1,0 +1,57 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Breweries</h1>
+
+<h2>Active</h2>
+<p> Number of active breweries: <%= @active_breweries.count %> </p>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Year</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @active_breweries.each do |brewery| %>
+      <tr>
+        <td><%= link_to brewery.name, brewery %></td>
+        <td><%= brewery.year %></td>
+        <% if current_user %>
+          <td><%= link_to 'Edit', edit_brewery_path(brewery), class:'btn btn-primary' %></td>
+          <td><%= link_to 'Destroy', brewery, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-danger' %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2>Retired</h2>
+<p> Number of retired breweries: <%= @retired_breweries.count %> </p>
+
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Year</th>
+    <th colspan="2"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @retired_breweries.each do |brewery| %>
+      <tr>
+        <td><%= link_to brewery.name, brewery %></td>
+        <td><%= brewery.year %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Brewery', new_brewery_path, class:'btn btn-primary' %>
+<br>
+<%= link_to 'list of beers', beers_path, class:'btn btn-primary' %>

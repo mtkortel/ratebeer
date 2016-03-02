@@ -1,10 +1,8 @@
 <h1>Beer places search</h1>
 
-<p id="notice"><%= notice %></p>
-
 <%= form_tag places_path do %>
   city <%= text_field_tag :city, params[:city] %>
-  <%= submit_tag "Search", class:'btn btn-primary' %>
+  <%= submit_tag "Search" %>
 <% end %>
 
 <% if @places %>
@@ -19,7 +17,7 @@
         <% Place.rendered_fields.each do |f| %>
           <td>
             <% if f==:name %>
-              <%= link_to place.name, place_path(place.id), class:'btn btn-primary' %>
+              <%= link_to place.name, place_path(place.id) %>
             <% else %>
               <%= place.send(f) %>
             <% end %>

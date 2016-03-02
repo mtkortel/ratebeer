@@ -15,7 +15,7 @@
   <tbody>
     <% @beer_clubs.each do |beer_club| %>
       <tr>
-        <td><%= link_to beer_club.name, beer_club , class:'btn btn-primary'%></td>
+        <td><%= link_to beer_club.name, beer_club %></td>
         <td><%= beer_club.city %></td>
         <td><%= beer_club.founded %></td>
       </tr>
@@ -25,4 +25,4 @@
 
 <br>
 
-<%= link_to 'New Beer club', new_beer_club_path, class:'btn btn-primary' %>
+<%= link_to 'New Beer club', new_beer_club_path %>

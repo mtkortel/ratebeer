@@ -9,18 +9,12 @@ class Beer < ActiveRecord::Base
   has_many :ratings, dependent: :destroy
   has_many :raters, -> { uniq }, through: :ratings, source: :user
 
+  def self.top(n)
+    sorted_by_rating_average = Beer.all.sort_by{ |b| -(b.average_rating || 0) }
+    sorted_by_rating_average[0, n]
+  end
+
   def to_s
     "#{name} #{brewery.name}"
   end
-
-  def self.top(n)
-    sorted_by_rating_in_desc_order = Beer.all.sort_by{ |b| -(b.average_rating || 0) }
-    sorted_by_rating_in_desc_order.first n
-    # palauta listalta parhaat n kappaletta
-    # miten? ks. http://www.ruby-doc.org/core-2.1.0/Array.html
-    # vaatii sen että jokaisella panimolla on ainakin yksi olut ja
-    # sillä reittaus
-  end
-
-
 end

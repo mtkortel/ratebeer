@@ -3,8 +3,9 @@ Rails.application.routes.draw do
   resources :beer_clubs
   resources :memberships
   resources :users do
-    post 'froze', on: :member
+    post 'toggle_lock', on: :member
   end
+
   resource :session, only: [:new, :create, :destroy]
 
   get 'signup', to: 'users#new'
@@ -15,6 +16,7 @@ Rails.application.routes.draw do
   resources :breweries do
     post 'toggle_activity', on: :member
   end
+
   resources :ratings, only: [:index, :new, :create, :destroy]
 
   resources :places, only:[:index, :show]
